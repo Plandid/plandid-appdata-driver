@@ -1,0 +1,32 @@
+{
+  "name": "plandid-appdata-driver",
+  "version": "0.0.0",
+  "description": "Database driver for the AppData database. This database holds credentials for other microservices in the Plandid ecosystem and other inter-service data",
+  "main": "server.js",
+  "scripts": {
+    "preinstall": "git config core.hooksPath gitHooks",
+    "test": "jest",
+    "start": "node src/server.js",
+    "delete-database": "node scripts/deleteDatabase.js",
+    "create-database": "node scripts/createDatabase.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Plandid/plandid-appdata-driver.git"
+  },
+  "author": "Carl Schader",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Plandid/plandid-appdata-driver/issues"
+  },
+  "homepage": "https://github.com/Plandid/plandid-appdata-driver#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongodb": "^3.6.9",
+    "ssl-validator": "^1.0.7"
+  },
+  "devDependencies": {
+    "jest": "^27.0.4"
+  }
+}
