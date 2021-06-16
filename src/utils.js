@@ -1,3 +1,5 @@
 module.exports = {
-    
+    parseAuthorizationHeader: function() {
+        
+    }
 }

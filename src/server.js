@@ -1,10 +1,11 @@
 const express = require("express");
 const https = require("https");
 const http = require("http");
+const auth = require("basic-auth");
 const { validateSSLCert, validateSSLKey, validateCertKeyPair} = require("ssl-validator");
 require("dotenv").config();
 
-const { connect, isValidServiceId } = require("./database");
+const { connect, authorize, ObjectID } = require("./database");
 const { serviceName, httpPort, httpsPort } = require("./config");
 
 (async function() {
@@ -15,11 +16,13 @@ const { serviceName, httpPort, httpsPort } = require("./config");
     app.use(express.json());
     app.use(express.urlencoded({extended: false}));
 
-    app.use(function(req, res, next) {
-        if (isValidServiceId(1)) {
+    // Authorize each request against our services collection
+    app.use(async function(req, res, next) {
+        const credentials = auth.parse(req.headers.authorization);
+        if (credentials && ObjectID.isValid(credentials.pass) && await authorize(credentials.name, new ObjectID(credentials.pass))) {
             next();
         } else {
-            res.status(403).json({message: "no credentials sent"});
+            res.status(401).json({message: "not authorized"});
         }
     });
 
