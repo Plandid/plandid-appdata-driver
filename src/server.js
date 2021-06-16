@@ -1,15 +1,13 @@
 const express = require("express");
 const https = require("https");
 const http = require("http");
-const {} = require("utils");
 const { validateSSLCert, validateSSLKey, validateCertKeyPair} = require("ssl-validator");
 require("dotenv").config();
 
-const { connect } = require("./database");
+require("./database");
 const { serviceName, httpPort, httpsPort } = require("./config");
 
 (async function() {
-    await connect();
 
     const app = express();
 
