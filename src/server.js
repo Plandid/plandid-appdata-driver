@@ -22,14 +22,14 @@ const { serviceName, httpPort, httpsPort } = require("./config");
         if (credentials && ObjectID.isValid(credentials.pass) && await authorize(credentials.name, new ObjectID(credentials.pass))) {
             next();
         } else {
-            res.status(401).json({message: "not authorized"});
+            res.status(401).json({error: "not authorized"});
         }
     });
 
     app.use(require("./routes"));
 
     app.use("*", function(req, res) {
-        res.status(404).json({message: "no route found"});
+        res.status(404).json({error: "no route found"});
     });
 
     if (process.env.SSL_KEY && process.env.SSL_CERTIFICATE) {
