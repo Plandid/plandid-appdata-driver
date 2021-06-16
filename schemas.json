@@ -1,0 +1,44 @@
+{
+    "services": {
+        "bsonType": "object",
+        "required": ["name"],
+        "additionalProperties": false,
+        "properties": {
+            "_id": {
+                "bsonType": "objectId"
+            },
+            "name": {
+                "bsonType": "string",
+                "maxLength": 32,
+                "minLength": 1,
+                "pattern": "^[^\\s]+(\\s+[^\\s]+){32}$"
+            }
+        }
+    },
+    "userTiers": {
+        "bsonType": "object",
+        "required": ["name", "price", "type"],
+        "additionalProperties": false,
+        "properties": {
+            "_id": {
+                "bsonType": "objectId"
+            },
+            "name": {
+                "bsonType": "string",
+                "maxLength": 32,
+                "minLength": 1,
+                "pattern": "^[^\\s]+(\\s+[^\\s]+){32}$"
+            },
+            "price": {
+                "bsonType": "double",
+                "minimum": 0.0
+            },
+            "type": {
+                "bsonType": "string",
+                "maxLength": 32,
+                "minLength": 1,
+                "pattern": "^[^\\s]+(\\s+[^\\s]+){32}$"
+            }
+        }
+    }
+}
