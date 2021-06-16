@@ -1,30 +1,31 @@
 const { MongoClient } = require("mongodb");
 const { databaseName } = require("./config");
 
-const client = new MongoClient(process.env.DB_URL, {useNewUrlParser: true, useUnifiedTopology: true});
+(async function() {
+    const client = new MongoClient(process.env.DB_URL, {useNewUrlParser: true, useUnifiedTopology: true});
 
-
-
-module.exports = {
-    connect: async function() {
-        try {
-            await client.connect();
-            return true;
-        } catch (error) {
-            console.error(error);
-            return false;
-        }
-    },
-    disconnect: async function() {
-        try {
-            await client.close();
-            return true;
-        } catch (error) {
-            console.error(error);
-            return false;
-        }
-    },
-    fetchdb: function() {
-        return client.db(databaseName);
+    try {
+        await client.connect();
+    } catch (error) {
+        console.error(error);
+        process.exit(1);
     }
-};
+
+    const db = client.db(databaseName);
+
+    module.exports = {
+        db: db,
+        disconnect: async function() {
+            try {
+                await client.close();
+                return true;
+            } catch (error) {
+                console.error(error);
+                return false;
+            }
+        },
+        validateServiceId: async function(id) {
+            
+        }
+    };
+})();
