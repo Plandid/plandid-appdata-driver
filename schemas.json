@@ -10,8 +10,7 @@
             "name": {
                 "bsonType": "string",
                 "maxLength": 32,
-                "minLength": 1,
-                "pattern": "^[^\\s]+(\\s+[^\\s]+){32}$"
+                "minLength": 1
             }
         }
     },
@@ -26,8 +25,7 @@
             "name": {
                 "bsonType": "string",
                 "maxLength": 32,
-                "minLength": 1,
-                "pattern": "^[^\\s]+(\\s+[^\\s]+){32}$"
+                "minLength": 1
             },
             "price": {
                 "bsonType": "double",
@@ -36,8 +34,7 @@
             "type": {
                 "bsonType": "string",
                 "maxLength": 32,
-                "minLength": 1,
-                "pattern": "^[^\\s]+(\\s+[^\\s]+){32}$"
+                "minLength": 1
             }
         }
     }

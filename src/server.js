@@ -4,23 +4,29 @@ const http = require("http");
 const { validateSSLCert, validateSSLKey, validateCertKeyPair} = require("ssl-validator");
 require("dotenv").config();
 
-require("./database");
+const { connect, isValidServiceId } = require("./database");
 const { serviceName, httpPort, httpsPort } = require("./config");
 
 (async function() {
+    await connect();
 
     const app = express();
 
     app.use(express.json());
     app.use(express.urlencoded({extended: false}));
 
-    // app.use()
+    app.use(function(req, res, next) {
+        if (isValidServiceId(1)) {
+            next();
+        } else {
+            res.status(403).json({message: "no credentials sent"});
+        }
+    });
 
     app.use(require("./routes"));
 
     app.use("*", function(req, res) {
-        res.status(404);
-        res.json({message: "no route found"});
+        res.status(404).json({message: "no route found"});
     });
 
     if (process.env.SSL_KEY && process.env.SSL_CERTIFICATE) {
