@@ -1,5 +1,3 @@
-DIR = "./.git"
-
-if [ -d "$DIR"]; then
+if [ -d "./.git" ]; then
     git config core.hooksPath gitHooks
 fi

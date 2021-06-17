@@ -4,7 +4,7 @@
   "description": "Database driver for the AppData database. This database holds credentials for other microservices in the Plandid ecosystem and other inter-service data",
   "main": "server.js",
   "scripts": {
-    "preinstall": "git config core.hooksPath gitHooks",
+    "preinstall": "bash ./scripts/preinstall.sh",
     "test": "jest",
     "start": "node src/server.js",
     "delete-database": "node scripts/deleteDatabase.js",
