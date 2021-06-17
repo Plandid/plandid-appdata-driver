@@ -6,7 +6,11 @@ WORKDIR /home/node/
 
 COPY package*.json ./
 
-COPY --chown=node:node . .
+RUN mkdir ./scripts/
+
+COPY ./scripts/preinstall.sh ./scripts/
+
+COPY --chown=node:node ./ ./
 
 RUN npm install --only=prod
 
