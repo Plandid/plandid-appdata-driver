@@ -32,20 +32,25 @@ const { serviceName, httpPort, httpsPort } = require("./config");
         res.status(404).json({error: "no route found"});
     });
 
-    if (process.env.SSL_KEY && process.env.SSL_CERTIFICATE) {
-        try {
-            validateSSLCert(process.env.SSL_CERTIFICATE);
-            validateSSLKey(process.env.SSL_KEY);
-            validateCertKeyPair(process.env.SSL_CERTIFICATE, process.env.SSL_KEY);
-        } catch (error) {
-            console.error(error);
-            process.exit(1);
-        }
+    if (process.env.HTTPS) {
+        let httpsOptions = {};
         
-        const httpsOptions = {
-            key: process.env.SSL_KEY,
-            cert: process.env.SSL_CERTIFICATE
-        };
+        if (process.env.SSL_KEY && process.env.SSL_CERTIFICATE) {
+            try {
+                validateSSLCert(process.env.SSL_CERTIFICATE);
+                validateSSLKey(process.env.SSL_KEY);
+                validateCertKeyPair(process.env.SSL_CERTIFICATE, process.env.SSL_KEY);
+            } catch (error) {
+                console.error(error);
+                process.exit(1);
+            }
+            
+            httpsOptions = {
+                key: process.env.SSL_KEY,
+                cert: process.env.SSL_CERTIFICATE
+            };
+        }
+
         https.createServer(httpsOptions, app).listen(httpsPort);
         http.createServer(express().use(function(req, res) {
             res.redirect(`https://${req.headers.host}${req.url}`);
