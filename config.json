@@ -1,6 +1,6 @@
 {
     "serviceName": "Plandid AppData Driver",
     "databaseName": "AppData",
-    "httpPort": 6080,
-    "httpsPort": 6443 
+    "httpPort": 8080,
+    "httpsPort": 8443 
 }
