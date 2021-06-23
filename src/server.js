@@ -1,6 +1,7 @@
 const express = require("express");
 const https = require("https");
 const http = require("http");
+const fs = require("fs");
 const auth = require("basic-auth");
 const { validateSSLCert, validateSSLKey, validateCertKeyPair} = require("ssl-validator");
 require("dotenv").config();
@@ -36,19 +37,10 @@ const { serviceName, httpPort, httpsPort } = require("./config");
         res.status(404).json({error: "no route found"});
     });
         
-    if (process.env.SSL_KEY && process.env.SSL_CERTIFICATE) {
-        try {
-            validateSSLCert(process.env.SSL_CERTIFICATE);
-            validateSSLKey(process.env.SSL_KEY);
-            validateCertKeyPair(process.env.SSL_CERTIFICATE, process.env.SSL_KEY);
-        } catch (error) {
-            console.error(error);
-            process.exit(1);
-        }
-        
+    if (process.env.SSL_CERTIFICATE_PATH && process.env.SSL_KEY_PATH) {
         const httpsOptions = {
-            key: process.env.SSL_KEY,
-            cert: process.env.SSL_CERTIFICATE
+            cert: fs.readFileSync(process.env.SSL_CERTIFICATE_PATH),
+            key: fs.readFileSync(process.env.SSL_KEY_PATH)
         };
 
         https.createServer(httpsOptions, app).listen(httpsPort);
@@ -56,8 +48,8 @@ const { serviceName, httpPort, httpsPort } = require("./config");
             res.redirect(`https://${req.headers.host}${req.url}`);
         })).listen(httpPort);
         console.log(`${serviceName} running https on port: ${httpsPort}, and redirecting http on port: ${httpPort}...`);
-    }
-
-    http.createServer(app).listen(httpPort);
+    } else {
+        http.createServer(app).listen(httpPort);
         console.log(`${serviceName} running http on port: ${httpPort}...`);
+    }
 })();
