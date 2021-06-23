@@ -3,7 +3,6 @@ const https = require("https");
 const http = require("http");
 const fs = require("fs");
 const auth = require("basic-auth");
-const { validateSSLCert, validateSSLKey, validateCertKeyPair} = require("ssl-validator");
 require("dotenv").config();
 
 const { connect, authorize, ObjectID } = require("./database");
