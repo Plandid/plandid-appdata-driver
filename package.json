@@ -1,6 +1,6 @@
 {
   "name": "plandid-appdata-driver",
-  "version": "1.1.13",
+  "version": "1.2.0",
   "description": "Database driver for the AppData database. This database holds credentials for other microservices in the Plandid ecosystem and other inter-service data",
   "main": "server.js",
   "scripts": {
@@ -14,7 +14,9 @@
     "increment-major": "node scripts/incrementMajor.js",
     "commit-feature": "bash scripts/commit-feature.sh",
     "commit-major": "bash scripts/commit-major.sh",
-    "tag-commit": "node scripts/tagCommit.js"
+    "tag-commit": "node scripts/tagCommit.js",
+    "build-container": "node scripts/buildContainer.js",
+    "run-container": "node scripts/runContainer.js"
   },
   "repository": {
     "type": "git",
