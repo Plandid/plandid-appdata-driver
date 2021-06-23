@@ -1,6 +1,7 @@
 const { exec } = require("child_process");
 
 const version = require("fs").readFileSync("./package.json").vesion;
+console.log(version)
 
 exec(`git tag ${version}`, (error, stdout, stderr) => {
     if (error) {
