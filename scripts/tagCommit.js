@@ -1,6 +1,6 @@
 const { exec } = require("child_process");
 
-const version = JSON.parse(require("fs").readFileSync("./package.json")).vesion;
+const version = JSON.parse(require("fs").readFileSync("./package.json")).version;
 
 exec(`git tag ${version}`, (error, stdout, stderr) => {
     if (error) {
