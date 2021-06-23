@@ -4,10 +4,14 @@ const { checkForClientError } = require("../utils");
 
 const router = express.Router();
 
-router.get("/:name", async function(req, res) {
-    checkForClientError(req, res, expectedPathParams={name: "plandid-web-server"});
+router.get("/:identifier", async function(req, res) {
+    checkForClientError(req, res, expectedPathParams={identifier: "plandid-web-server"});
 
-    const data = await db.collection("services").find({name: req.params.name}).next();
+    let data = await db.collection("services").find({_id: req.params.identifier}).next();
+
+    if (!data) {
+        data = await db.collection("services").find({name: req.params.identifier}).next();
+    }
 
     res.json(data ? data : {error: "no records found"});
 });
