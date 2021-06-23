@@ -1,7 +1,5 @@
 #!/bin/sh
 
-npm run test
-
 if npm run test ; then
     npm run increment-patch
 else
