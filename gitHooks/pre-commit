@@ -2,4 +2,8 @@
 
 npm run test
 
-exit $?
+if npm run test ; then
+    npm run increment-patch
+else
+    exit 1
+fi
