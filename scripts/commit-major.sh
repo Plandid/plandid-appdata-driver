@@ -6,6 +6,10 @@ if [ "$1" = "" ]; then
 else
     npm run increment-major
     git add .
-    git commit -m "$1"
-    exit 0
+    if npm run test ; then
+        git commit --no-verify -m "$1"
+        exit 0
+    else
+        exit 1
+    fi
 fi
