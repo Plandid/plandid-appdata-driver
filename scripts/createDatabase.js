@@ -6,6 +6,8 @@ const schemas = JSON.parse(fs.readFileSync("./schemas.json"));
 const indexes = JSON.parse(fs.readFileSync("./indexes.json"));
 const { databaseName } = JSON.parse(fs.readFileSync("./config.json"));
 
+console.log(process.env.DB_URL);
+
 (async function() {
     const client = new MongoClient(process.env.DB_URL, {useNewUrlParser: true, useUnifiedTopology: true});
 
@@ -30,4 +32,4 @@ const { databaseName } = JSON.parse(fs.readFileSync("./config.json"));
 
     console.log(`Database ${databaseName} has been created.`);
     process.exit(0);
-})()
+})();
