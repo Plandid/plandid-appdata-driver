@@ -66,7 +66,6 @@ metadata:
                           .: {}
                           'f:key': {}
                           'f:name': {}
-                  'f:image': {}
                   'f:imagePullPolicy': {}
                   'f:name': {}
                   'f:resources':
@@ -97,6 +96,27 @@ metadata:
       fieldsV1:
         'f:metadata':
           'f:annotations':
+            'f:gcb-build-id': {}
+            'f:gcb-trigger-id': {}
+            'f:kubectl.kubernetes.io/last-applied-configuration': {}
+        'f:spec':
+          'f:template':
+            'f:metadata':
+              'f:annotations':
+                'f:gcb-build-id': {}
+                'f:gcb-trigger-id': {}
+            'f:spec':
+              'f:containers':
+                'k:{"name":"plandid-appdata-driver-sha256-1"}':
+                  'f:image': {}
+      manager: kubectl-client-side-apply
+      operation: Update
+      time: '2021-06-25T02:10:25Z'
+    - apiVersion: apps/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
             'f:deployment.kubernetes.io/revision': {}
         'f:status':
           'f:availableReplicas': {}
@@ -121,10 +141,11 @@ metadata:
           'f:observedGeneration': {}
           'f:readyReplicas': {}
           'f:replicas': {}
+          'f:unavailableReplicas': {}
           'f:updatedReplicas': {}
       manager: kube-controller-manager
       operation: Update
-      time: '2021-06-23T23:48:02Z'
+      time: '2021-06-25T02:10:26Z'
   name: plandid-appdata-driver
   namespace: default
 spec:
@@ -202,7 +223,7 @@ metadata:
             'f:name': {}
       manager: GoogleCloudConsole
       operation: Update
-      time: '2021-06-23T23:46:19Z'
+      time: '2021-06-25T01:20:56Z'
     - apiVersion: autoscaling/v1
       fieldsType: FieldsV1
       fieldsV1:
@@ -218,8 +239,8 @@ metadata:
           'f:lastScaleTime': {}
       manager: vpa-recommender
       operation: Update
-      time: '2021-06-23T23:51:37Z'
-  name: plandid-appdata-driver-hpa-cb3j
+      time: '2021-06-25T01:26:17Z'
+  name: plandid-appdata-driver-hpa-2dts
   namespace: default
 spec:
   maxReplicas: 5
@@ -240,7 +261,7 @@ metadata:
   annotations:
     cloud.google.com/neg: '{"ingress":true}'
     cloud.google.com/neg-status: >-
-      {"network_endpoint_groups":{"80":"k8s1-72d8f7f2-default-plandid-appdata-driver-service-8-0a780975"},"zones":["us-west1-b","us-west1-c"]}
+      {"network_endpoint_groups":{"80":"k8s1-fba61d01-default-plandid-appdata-driver-service-8-bbb53161"},"zones":["us-central1-a","us-central1-b"]}
   finalizers:
     - service.kubernetes.io/load-balancer-cleanup
   labels:
@@ -269,7 +290,7 @@ metadata:
           'f:type': {}
       manager: GoogleCloudConsole
       operation: Update
-      time: '2021-06-24T00:33:45Z'
+      time: '2021-06-25T01:29:46Z'
     - apiVersion: v1
       fieldsType: FieldsV1
       fieldsV1:
@@ -282,7 +303,7 @@ metadata:
             'f:ingress': {}
       manager: kube-controller-manager
       operation: Update
-      time: '2021-06-24T00:34:30Z'
+      time: '2021-06-25T01:30:43Z'
     - apiVersion: v1
       fieldsType: FieldsV1
       fieldsV1:
@@ -291,14 +312,14 @@ metadata:
             'f:cloud.google.com/neg-status': {}
       manager: glbc
       operation: Update
-      time: '2021-06-24T19:26:40Z'
+      time: '2021-06-25T01:46:32Z'
   name: plandid-appdata-driver-service
   namespace: default
 spec:
-  clusterIP: 10.120.128.27
+  clusterIP: 10.113.1.85
   externalTrafficPolicy: Cluster
   ports:
-    - nodePort: 32249
+    - nodePort: 31670
       port: 80
       protocol: TCP
       targetPort: 8080
