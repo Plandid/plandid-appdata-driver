@@ -5,7 +5,7 @@ metadata:
     autopilot.gke.io/resource-adjustment: >-
       {"input":{"containers":[{"name":"plandid-appdata-driver-sha256-1"}]},"output":{"containers":[{"limits":{"cpu":"500m","ephemeral-storage":"1Gi","memory":"2Gi"},"requests":{"cpu":"500m","ephemeral-storage":"1Gi","memory":"2Gi"},"name":"plandid-appdata-driver-sha256-1"}]},"modified":true}
   labels:
-    app: plandid-appdata-driver
+    app: plandid-appdata-driver-test
   managedFields:
     - apiVersion: apps/v1
       fieldsType: FieldsV1
@@ -66,6 +66,7 @@ metadata:
                           .: {}
                           'f:key': {}
                           'f:name': {}
+                  'f:image': {}
                   'f:imagePullPolicy': {}
                   'f:name': {}
                   'f:resources':
@@ -90,28 +91,7 @@ metadata:
               'f:terminationGracePeriodSeconds': {}
       manager: GoogleCloudConsole
       operation: Update
-      time: '2021-06-23T23:46:18Z'
-    - apiVersion: apps/v1
-      fieldsType: FieldsV1
-      fieldsV1:
-        'f:metadata':
-          'f:annotations':
-            'f:gcb-build-id': {}
-            'f:gcb-trigger-id': {}
-            'f:kubectl.kubernetes.io/last-applied-configuration': {}
-        'f:spec':
-          'f:template':
-            'f:metadata':
-              'f:annotations':
-                'f:gcb-build-id': {}
-                'f:gcb-trigger-id': {}
-            'f:spec':
-              'f:containers':
-                'k:{"name":"plandid-appdata-driver-sha256-1"}':
-                  'f:image': {}
-      manager: kubectl-client-side-apply
-      operation: Update
-      time: '2021-06-25T02:10:25Z'
+      time: '2021-06-25T13:13:29Z'
     - apiVersion: apps/v1
       fieldsType: FieldsV1
       fieldsV1:
@@ -141,18 +121,17 @@ metadata:
           'f:observedGeneration': {}
           'f:readyReplicas': {}
           'f:replicas': {}
-          'f:unavailableReplicas': {}
           'f:updatedReplicas': {}
       manager: kube-controller-manager
       operation: Update
-      time: '2021-06-25T02:10:26Z'
-  name: plandid-appdata-driver
+      time: '2021-06-25T13:15:21Z'
+  name: plandid-appdata-driver-test
   namespace: default
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: plandid-appdata-driver
+      app: plandid-appdata-driver-test
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -161,7 +140,7 @@ spec:
   template:
     metadata:
       labels:
-        app: plandid-appdata-driver
+        app: plandid-appdata-driver-test
     spec:
       containers:
         - env:
@@ -169,17 +148,17 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   key: DB_USERNAME
-                  name: plandid-appdata-driver-config-bfer
+                  name: plandid-appdata-driver-test-config-oweq
             - name: DB_PASSWORD
               valueFrom:
                 configMapKeyRef:
                   key: DB_PASSWORD
-                  name: plandid-appdata-driver-config-bfer
+                  name: plandid-appdata-driver-test-config-oweq
             - name: DB_URL
               valueFrom:
                 configMapKeyRef:
                   key: DB_URL
-                  name: plandid-appdata-driver-config-bfer
+                  name: plandid-appdata-driver-test-config-oweq
           image: gcr.io/plandid-test/github.com/plandid/plandid-appdata-driver
           imagePullPolicy: IfNotPresent
           name: plandid-appdata-driver-sha256-1
@@ -204,7 +183,7 @@ apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
   labels:
-    app: plandid-appdata-driver
+    app: plandid-appdata-driver-test
   managedFields:
     - apiVersion: autoscaling/v2beta1
       fieldsType: FieldsV1
@@ -223,7 +202,7 @@ metadata:
             'f:name': {}
       manager: GoogleCloudConsole
       operation: Update
-      time: '2021-06-25T01:20:56Z'
+      time: '2021-06-25T13:13:29Z'
     - apiVersion: autoscaling/v1
       fieldsType: FieldsV1
       fieldsV1:
@@ -239,8 +218,8 @@ metadata:
           'f:lastScaleTime': {}
       manager: vpa-recommender
       operation: Update
-      time: '2021-06-25T01:26:17Z'
-  name: plandid-appdata-driver-hpa-2dts
+      time: '2021-06-25T13:18:59Z'
+  name: plandid-appdata-driver-test-hpa-7qxh
   namespace: default
 spec:
   maxReplicas: 5
@@ -253,7 +232,7 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: plandid-appdata-driver
+    name: plandid-appdata-driver-test
 ---
 apiVersion: v1
 kind: Service
@@ -261,11 +240,11 @@ metadata:
   annotations:
     cloud.google.com/neg: '{"ingress":true}'
     cloud.google.com/neg-status: >-
-      {"network_endpoint_groups":{"80":"k8s1-fba61d01-default-plandid-appdata-driver-service-8-bbb53161"},"zones":["us-central1-a","us-central1-b"]}
+      {"network_endpoint_groups":{"80":"k8s1-7ba529aa-default-plandid-appdata-driver-test-se-8-763f7259"},"zones":["us-central1-b","us-central1-c"]}
   finalizers:
     - service.kubernetes.io/load-balancer-cleanup
   labels:
-    app: plandid-appdata-driver
+    app: plandid-appdata-driver-test
   managedFields:
     - apiVersion: v1
       fieldsType: FieldsV1
@@ -290,7 +269,7 @@ metadata:
           'f:type': {}
       manager: GoogleCloudConsole
       operation: Update
-      time: '2021-06-25T01:29:46Z'
+      time: '2021-06-25T13:16:18Z'
     - apiVersion: v1
       fieldsType: FieldsV1
       fieldsV1:
@@ -303,7 +282,7 @@ metadata:
             'f:ingress': {}
       manager: kube-controller-manager
       operation: Update
-      time: '2021-06-25T01:30:43Z'
+      time: '2021-06-25T13:17:11Z'
     - apiVersion: v1
       fieldsType: FieldsV1
       fieldsV1:
@@ -312,18 +291,18 @@ metadata:
             'f:cloud.google.com/neg-status': {}
       manager: glbc
       operation: Update
-      time: '2021-06-25T01:46:32Z'
-  name: plandid-appdata-driver-service
+      time: '2021-06-25T13:19:01Z'
+  name: plandid-appdata-driver-test-service
   namespace: default
 spec:
-  clusterIP: 10.113.1.85
+  clusterIP: 10.14.0.47
   externalTrafficPolicy: Cluster
   ports:
-    - nodePort: 31670
+    - nodePort: 30392
       port: 80
       protocol: TCP
       targetPort: 8080
   selector:
-    app: plandid-appdata-driver
+    app: plandid-appdata-driver-test
   sessionAffinity: None
   type: LoadBalancer
