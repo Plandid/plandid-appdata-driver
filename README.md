@@ -16,4 +16,5 @@ $ npm run build-image
 
 $ npm run run-container
 
-The container will serve over ports 8080 for http and if you have defined SSL environment variables it will serve https over 8443 and redirect http traffic to that port.
+The container will serve over ports 80 for http and if you have defined SSL environment variables it will serve https over 443 and redirect http traffic to that port.
+You can of course build the docker image and run it however you please. See the Dockerfile for info about how the image is created.
