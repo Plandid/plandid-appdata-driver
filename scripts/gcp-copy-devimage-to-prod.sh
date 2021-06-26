@@ -8,7 +8,7 @@ then
     exit 1
 elif [ "$2" = "" ]
 then
-    echo "no dev directory path given"
+    echo "no prod directory path given"
     exit 1
 else
     gcloud auth configure-docker
