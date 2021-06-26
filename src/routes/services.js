@@ -6,6 +6,12 @@ const router = express.Router();
 
 const db = fetchdb();
 
+router.get("/", async function(req, res) {
+    let data = await db.collection("services").find({}).toArray();
+
+    res.json(data ? data : {error: "no records found"});
+});
+
 router.get("/:identifier", async function(req, res) {
     checkForClientError(req, res, expectedPathParams={identifier: "plandid-web-server"});
 
