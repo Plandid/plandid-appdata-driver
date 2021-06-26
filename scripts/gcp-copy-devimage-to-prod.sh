@@ -11,6 +11,8 @@ then
     echo "no prod directory path given"
     exit 1
 else
+    sudo usermod -a -G docker ${USER}
+    gcloud auth login
     gcloud auth configure-docker
 
     docker pull $1
