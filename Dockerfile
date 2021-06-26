@@ -4,8 +4,6 @@ USER node
 
 WORKDIR /home/node/
 
-COPY package*.json ./
-
 COPY --chown=node:node ./ ./
 
 RUN npm install --only=prod
