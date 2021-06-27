@@ -1,6 +1,4 @@
 {
     "serviceName": "plandid-appdata-driver",
-    "databaseName": "appata",
-    "httpPort": 8080,
-    "httpsPort": 8443 
+    "databaseName": "appata"
 }
