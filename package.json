@@ -1,6 +1,6 @@
 {
   "name": "plandid-appdata-driver",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "Database driver for the AppData database. This database holds credentials for other microservices in the Plandid ecosystem and other inter-service data",
   "main": "server.js",
   "scripts": {
@@ -9,6 +9,8 @@
     "start": "node src/server.js",
     "delete-database": "node scripts/deleteDatabase.js",
     "create-database": "node scripts/createDatabase.js",
+    "clear-database": "node scripts/clearDatabase.js",
+    "update-database": "node scripts/updateDatabase.js",
     "increment-patch": "node scripts/incrementPatch.js",
     "increment-minor": "node scripts/incrementMinor.js",
     "increment-major": "node scripts/incrementMajor.js",
