@@ -21,6 +21,14 @@
             },
             "url": {
                 "bsonType": "string"
+            },
+            "supportedClients": {
+                "bsonType": "object",
+                "patternProperties": {
+                    "^[a-zA-Z0-9-_][a-zA-Z0-9-_ ]{0,126}[a-zA-Z0-9-_]$": {
+                        "bsonType": "null"
+                    }
+                }
             }
         }
     },
