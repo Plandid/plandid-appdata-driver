@@ -18,6 +18,9 @@
                         "bsonType": "string"
                     }
                 }
+            },
+            "url": {
+                "bsonType": "string"
             }
         }
     },

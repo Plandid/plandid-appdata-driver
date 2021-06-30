@@ -1,6 +1,6 @@
 {
   "name": "plandid-appdata-driver",
-  "version": "1.8.0",
+  "version": "1.8.1",
   "description": "Database driver for the AppData database. This database holds credentials for other microservices in the Plandid ecosystem and other inter-service data",
   "main": "server.js",
   "scripts": {
