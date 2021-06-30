@@ -10,6 +10,14 @@
             "name": {
                 "bsonType": "string",
                 "pattern": "^[a-zA-Z0-9-_][a-zA-Z0-9-_ ]{0,126}[a-zA-Z0-9-_]$"
+            },
+            "environmentVariables": {
+                "bsonType": "object",
+                "patternProperties": {
+                    "^[A-Z0-9-_][A-Z0-9-_ ]{0,126}[A-Z0-9-_]$": {
+                        "bsonType": "string"
+                    }
+                }
             }
         }
     },
