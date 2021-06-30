@@ -35,6 +35,9 @@
             "name": {
                 "bsonType": "string",
                 "pattern": "^[a-zA-Z0-9-_][a-zA-Z0-9-_ ]{0,126}[a-zA-Z0-9-_]$"
+            },
+            "jwtKey": {
+                "bsonType": "string"
             }
         }
     },
