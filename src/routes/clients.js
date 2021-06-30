@@ -1,0 +1,27 @@
+const express = require("express");
+const { ObjectID, fetchdb } = require("../database");
+const { checkForClientError } = require("../utils");
+
+const router = express.Router();
+
+const collection = fetchdb().collection("clients");
+
+router.get("/", async function(req, res) {
+    let data = await collection.find({}).toArray();
+
+    res.json(data ? data : {error: "no records found"});
+});
+
+router.get("/:identifier", async function(req, res) {
+    checkForClientError(req, res, expectedPathParams={identifier: "plandid-web-server"});
+
+    let data = await collection.find({name: req.params.identifier}).next();
+
+    if (!data) {
+        data = await collection.find({_id: ObjectID(req.params.identifier)}).next();
+    }
+
+    res.json(data ? data : {error: "no records found"});
+});
+
+module.exports = router;
