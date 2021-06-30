@@ -9,8 +9,21 @@
             },
             "name": {
                 "bsonType": "string",
-                "maxLength": 32,
-                "minLength": 1
+                "pattern": "^[a-zA-Z0-9-_][a-zA-Z0-9-_ ]{0,126}[a-zA-Z0-9-_]$"
+            }
+        }
+    },
+    "clients": {
+        "bsonType": "object",
+        "required": ["name"],
+        "additionalProperties": false,
+        "properties": {
+            "_id": {
+                "bsonType": "objectId"
+            },
+            "name": {
+                "bsonType": "string",
+                "pattern": "^[a-zA-Z0-9-_][a-zA-Z0-9-_ ]{0,126}[a-zA-Z0-9-_]$"
             }
         }
     },
@@ -24,8 +37,7 @@
             },
             "name": {
                 "bsonType": "string",
-                "maxLength": 32,
-                "minLength": 1
+                "pattern": "^[a-zA-Z0-9-_][a-zA-Z0-9-_ ]{0,126}[a-zA-Z0-9-_]$"
             },
             "price": {
                 "bsonType": "double",
@@ -33,8 +45,7 @@
             },
             "type": {
                 "bsonType": "string",
-                "maxLength": 32,
-                "minLength": 1
+                "pattern": "^[a-zA-Z0-9-_][a-zA-Z0-9-_ ]{0,126}[a-zA-Z0-9-_]$"
             }
         }
     }

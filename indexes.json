@@ -5,6 +5,12 @@
             "options": {"unique": true}
         }
     ],
+    "clients": [
+        {
+            "index": {"name": 1},
+            "options": {"unique": true}
+        }
+    ],
     "userTiers": [
         {
             "index": {"name": 1},
