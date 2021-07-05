@@ -10,7 +10,6 @@ router.get("/", async function(req, res) {
 });
 
 router.get("/:name", async function(req, res) {
-    checkForClientError(req, res, expectedPathParams={name: "plandid-web-server"});
     res.json(await collection.find({name: req.params.name}).next());
 });
 

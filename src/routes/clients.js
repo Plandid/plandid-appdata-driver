@@ -13,8 +13,6 @@ router.get("/", async function(req, res) {
 });
 
 router.get("/:identifier", async function(req, res) {
-    checkForClientError(req, res, expectedPathParams={identifier: "plandid-web-server"});
-
     let data = await collection.find({name: req.params.identifier}).next();
 
     if (!data) {
