@@ -1,15 +1,22 @@
-const express = require("express");
-const https = require("https");
-const http = require("http");
-const fs = require("fs");
-const auth = require("basic-auth");
-require("dotenv").config();
+require('dotenv').config();
 
-const { connect, authorize, ObjectID } = require("./database");
-const { serviceName, httpPort, httpsPort } = require("./config");
+const express = require('express');
+const https = require('https');
+const http = require('http');
+const fs = require('fs');
+const auth = require('basic-auth');
+const { ObjectID } = require('mongodb');
+const { connect, getdb } = require('@plandid/mongo-utils');
+
+const { serviceName } = JSON.parse(fs.readFileSync('./config.json'));
+
+async function authorize(name, id) {
+    const db = getdb();
+    return await db.collection("services").find({_id: id, name: name}, {_id: true, name: true}).limit(1).hasNext();
+}
 
 (async function() {
-    await connect();
+    await connect(process.env.DB_URL);
 
     const app = express();
 
@@ -30,7 +37,7 @@ const { serviceName, httpPort, httpsPort } = require("./config");
         }
     });
 
-    app.use(require("./routes"));
+    app.use(require("./routes.js"));
 
     app.use("*", function(req, res) {
         res.status(404).json({error: "no route found"});

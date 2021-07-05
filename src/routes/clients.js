@@ -1,10 +1,10 @@
-const express = require("express");
-const { ObjectID, fetchdb } = require("../database");
-const { checkForClientError } = require("../utils");
+const express = require('express');
+const { getdb } = require('@plandid/mongo-utils');
+const { ObjectID } = require('mongodb');
 
 const router = express.Router();
 
-const collection = fetchdb().collection("clients");
+const collection = getdb().collection("clients");
 
 router.get("/", async function(req, res) {
     let data = await collection.find({}).toArray();
