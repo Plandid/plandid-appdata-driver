@@ -1,6 +1,6 @@
 {
   "name": "plandid-appdata-driver",
-  "version": "1.11.-1",
+  "version": "1.11.0",
   "description": "Database driver for the AppData database. This database holds credentials for other microservices in the Plandid ecosystem and other inter-service data",
   "main": "./src/server.js",
   "repository": {
@@ -21,11 +21,11 @@
     "mongodb": "^3.6.9"
   },
   "devDependencies": {
-    "@plandid/node-scripts": "^1.2.7",
+    "@plandid/node-scripts": "^1.2.11",
     "jest": "^27.0.4"
   },
   "scripts": {
-    "prepare": "scripts-setup",
+    "prepare": "git config core.hooksPath ./githooks/",
     "test": "exit 0",
     "start": "node ./src/server.js"
   }
